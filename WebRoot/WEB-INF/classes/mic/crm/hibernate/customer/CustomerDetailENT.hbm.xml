@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="mic.crm.common.customer.CustomerDetailsENT" table="site">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="scopeEn" type="java.lang.String">
+			<column name="scopeEn" />
+		</property>
+		<property name="scopeFa" type="java.lang.String">
+			<column name="scopeFa" />
+		</property>
+		<property name="addressEn" type="java.lang.String">
+			<column name="addrEn" />
+		</property>
+		<property name="addressFa" type="java.lang.String">
+			<column name="addrFa" />
+		</property>
+		<property name="employeeNo" type="java.lang.Integer">
+			<column name="employeeNo" />
+		</property>
+		<property name="clientNo" type="java.lang.String">
+			<column name="clientNo" />
+		</property>
+	</class>
+	<sql-query name="sqlGetCustomerDetailENT" callable="true">
+		<return class="mic.crm.common.customer.CustomerDetailsENT" lock-mode="read"></return>
+		select * from site where clientNo = ?
+	</sql-query>
+</hibernate-mapping>

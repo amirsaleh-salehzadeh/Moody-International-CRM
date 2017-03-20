@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<data-sources />
+	<form-beans />
+	<global-exceptions />
+	<global-forwards />
+	<action-mappings>
+		<action path="/t_customer" type="mic.crm.struts.action.tiles.T_CustomerAction">
+			<set-property property="cancellable" value="true" />
+			<forward name="list" path="page.customer" />
+			<forward name="edit" path="page.customer" />
+			<forward name="new" path="page.customer" />
+			<forward name="save" path="page.customer" />
+		</action>
+
+		<action path="/t_auditor" type="mic.crm.struts.action.tiles.T_AuditorAction">
+			<set-property property="cancellable" value="true" />
+			<forward name="list" path="page.auditor" />
+		</action>
+
+		<action  path="/t_user"
+			type="mic.crm.struts.action.tiles.T_UserAction">
+			<set-property property="cancellable" value="true" />
+			<forward name="list" path="page.user" />
+			<forward name="userRoles" path="page.user" />
+			<forward name="saveEdit" path="page.user" />
+			<forward name="edit" path="page.user" />
+			<forward name="delete" path="page.user" />
+			<forward name="operator" path="page.user" />
+			<forward name="salemng" path="page.user" />
+		</action>
+
+	</action-mappings>
+	<message-resources parameter="mic.crm.struts.tiles.ApplicationResources" />
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+		<set-property property="moduleAware" value="true" />
+		<set-property property="definitions-parser-validate"
+			value="true" />
+	</plug-in>
+</struts-config>
+

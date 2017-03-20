@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<data-sources />
+	<form-beans />
+	<global-exceptions />
+	<global-forwards />
+	<action-mappings>
+		<action path="/customer" type="mic.crm.struts.action.CustomerAction">
+			<set-property property="cancellable" value="true" />
+			<forward name="list" path="/pages/customer/customerList.jsp" />
+			<forward name="edit" path="/pages/customer/customerEdit.jsp" />
+		</action>
+		<action path="/auditor" type="mic.crm.struts.action.AuditorAction">
+			<set-property property="cancellable" value="true" />
+			<forward name="list" path="/pages/auditor/auditorList.jsp" />
+			<forward name="edit" path="/pages/auditor/auditorEdit.jsp" />
+		</action>
+		<action path="/user" type="mic.crm.struts.action.UserAction">
+			<set-property property="cancellable" value="true" />
+			<forward name="list" path="/pages/user/userList.jsp" />
+			<forward name="userRoles" path="/pages/user/userRoles.jsp" />
+			<forward name="edit" path="/pages/user/userEdit.jsp" />
+			<forward name="operator" path="/pages/user/operator.jsp" />
+			<forward name="ajaxUserList" path="/pages/user/ajaxUserList.jsp" />
+		</action>
+	</action-mappings>
+
+	<message-resources parameter="mic.crm.struts.ApplicationResources" />
+
+</struts-config>
+

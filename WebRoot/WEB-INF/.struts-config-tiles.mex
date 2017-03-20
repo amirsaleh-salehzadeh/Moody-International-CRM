@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/t_customer.do" location="50,50" dimension="255,88" />
+  <StrutsActivity path="/t_auditor.do" location="650,250" dimension="255,88" />
+  <StrutsActivity path="/t_user.do" location="650,450" dimension="202,88" />
+  <StrutsActivity path="page.customer" location="950,50" dimension="101,49" />
+  <StrutsActivity path="page.auditor" location="50,350" dimension="91,49" />
+  <StrutsActivity path="page.user" location="950,450" dimension="78,49" />
+  <StrutsActivity path="customer" location="650,50" dimension="73,49" />
+  <StrutsActivity path="/pages/customer/customerEdit.jsp" location="0,188" dimension="194,49" />
+  <StrutsActivity path="/pages/customer/customerList.jsp" location="294,188" dimension="192,49" />
+  <StrutsActivity path="/pages/auditor/auditorEdit.jsp" location="0,470" dimension="174,49" />
+  <StrutsActivity path="/pages/auditor/auditorList.jsp" location="274,470" dimension="172,49" />
+  <StrutsActivity path="/customer" location="650,150" dimension="77,49" />
+  <StrutsActivity path="customer.page" location="950,150" dimension="101,49" />
+  <StrutsTransition id="/t_user.do,delete,page.user,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="781,538" />
+      <AbsolutePoint location="781,553" />
+      <AbsolutePoint location="989,553" />
+      <AbsolutePoint location="989,499" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_customer.do,edit,page.customer,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="177,94" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_user.do,operator,page.user,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="721,538" />
+      <AbsolutePoint location="721,643" />
+      <AbsolutePoint location="1126,643" />
+      <AbsolutePoint location="1126,474" />
+      <AbsolutePoint location="1028,474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_user.do,salemng,page.user,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="852,474" />
+      <AbsolutePoint location="950,474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_user.do,saveEdit,page.user,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="751,538" />
+      <AbsolutePoint location="751,613" />
+      <AbsolutePoint location="1019,613" />
+      <AbsolutePoint location="1019,499" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_customer.do,list,page.customer,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="177,94" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_customer.do,new,page.customer,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="305,114" />
+      <AbsolutePoint location="1000,114" />
+      <AbsolutePoint location="1000,99" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_customer.do,save,page.customer,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="177,94" />
+      <AbsolutePoint location="1000,74" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_user.do,list,page.user,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="751,450" />
+      <AbsolutePoint location="751,365" />
+      <AbsolutePoint location="1019,365" />
+      <AbsolutePoint location="1019,450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_user.do,edit,page.user,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="781,450" />
+      <AbsolutePoint location="781,414" />
+      <AbsolutePoint location="989,414" />
+      <AbsolutePoint location="989,450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_user.do,userRoles,page.user,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="852,514" />
+      <AbsolutePoint location="959,514" />
+      <AbsolutePoint location="959,499" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/t_auditor.do,list,page.auditor,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,264" />
+      <AbsolutePoint location="65,264" />
+      <AbsolutePoint location="65,350" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

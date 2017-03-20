@@ -1,0 +1,396 @@
+﻿# SQL Manager 2007 for MySQL 4.5.0.7
+# ---------------------------------------
+# Host     : localhost
+# Port     : 3306
+# Database : micrm
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+SET FOREIGN_KEY_CHECKS=0;
+
+CREATE DATABASE `micrm`
+    CHARACTER SET 'utf8'
+    COLLATE 'utf8_persian_ci';
+
+USE `micrm`;
+
+#
+# Structure for the `aj` table : 
+#
+
+CREATE TABLE `aj` (
+  `ajNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `joNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `auditorNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  PRIMARY KEY (`ajNo`),
+  UNIQUE KEY `ajNo` (`ajNo`),
+  UNIQUE KEY `joNo` (`joNo`),
+  UNIQUE KEY `auditorNo` (`auditorNo`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+#
+# Structure for the `auditors` table : 
+#
+
+CREATE TABLE `auditors` (
+  `auditorNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `name` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `fname` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `language` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `eMail` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `tel` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `address` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `gender` binary(1) DEFAULT NULL,
+  `birth` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  PRIMARY KEY (`auditorNo`),
+  UNIQUE KEY `auditorNo` (`auditorNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci MIN_ROWS=1 PACK_KEYS=0;
+
+#
+# Structure for the `contract` table : 
+#
+
+CREATE TABLE `contract` (
+  `contractNo.` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `clientNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  UNIQUE KEY `contractNo.` (`contractNo.`),
+  UNIQUE KEY `clientNo` (`clientNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+#
+# Structure for the `customer` table : 
+#
+
+CREATE TABLE `customer` (
+  `clientNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `clientNameEn` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `clientNameFa` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `siteStatus` int(2) DEFAULT NULL,
+  `name` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `familyN` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  `position` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `mobile` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `issueDate` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `revisedDate` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `addContact` varchar(500) COLLATE utf8_persian_ci DEFAULT NULL,
+  `webSite` varchar(60) COLLATE utf8_persian_ci DEFAULT NULL,
+  `eMail` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
+  PRIMARY KEY (`clientNo`),
+  UNIQUE KEY `clientNo` (`clientNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci MIN_ROWS=1 PACK_KEYS=0;
+
+#
+# Structure for the `joborder` table : 
+#
+
+CREATE TABLE `joborder` (
+  `joNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `contractNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `multiSite` binary(1) NOT NULL,
+  `siteStatus` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `stage1` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `stage2` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `annual` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `six` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `preAudit` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `travel` bigint(15) DEFAULT NULL,
+  `acco` bigint(15) DEFAULT NULL,
+  `tax` bigint(15) DEFAULT NULL,
+  `conditions` varchar(30) COLLATE utf8_persian_ci DEFAULT NULL,
+  `approved` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `issueDate` date DEFAULT NULL,
+  UNIQUE KEY `contractNo` (`contractNo`),
+  UNIQUE KEY `joNo` (`joNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+#
+# Structure for the `record` table : 
+#
+
+CREATE TABLE `record` (
+  `recNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `stageid` int(20) NOT NULL,
+  PRIMARY KEY (`recNo`),
+  UNIQUE KEY `ajNo` (`stageid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+#
+# Structure for the `roles` table : 
+#
+
+CREATE TABLE `roles` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `RoleEn` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `RoleFa` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+#
+# Structure for the `site` table : 
+#
+
+CREATE TABLE `site` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `clientNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `scopeEn` varchar(300) COLLATE utf8_persian_ci DEFAULT NULL,
+  `scopeFa` varchar(300) COLLATE utf8_persian_ci DEFAULT NULL,
+  `addrEn` varchar(500) COLLATE utf8_persian_ci DEFAULT NULL,
+  `addrFa` varchar(500) COLLATE utf8_persian_ci DEFAULT NULL,
+  `employeeNo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci PACK_KEYS=0 ROW_FORMAT=COMPACT COMMENT='InnoDB free: 4096 kB';
+
+#
+# Structure for the `stage` table : 
+#
+
+CREATE TABLE `stage` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `ajNo` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ajNo` (`ajNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+#
+# Structure for the `user_role` table : 
+#
+
+CREATE TABLE `user_role` (
+  `ID` int(11) NOT NULL,
+  `username` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `roleName` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+#
+# Structure for the `users` table : 
+#
+
+CREATE TABLE `users` (
+  `username` varchar(20) COLLATE utf8_persian_ci NOT NULL,
+  `date` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `name` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `fname` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `address` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `nationalID` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `email` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `tel` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `dob` varchar(20) COLLATE utf8_persian_ci DEFAULT NULL,
+  `password` varchar(60) COLLATE utf8_persian_ci DEFAULT NULL,
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
+
+#
+# Definition for the `GetAuditors` procedure : 
+#
+
+CREATE DEFINER = 'root'@'localhost' PROCEDURE `GetAuditors`(
+        IN keyword VARCHAR(50),
+        IN sortword VARCHAR(50),
+        IN limit1 INTEGER(11),
+        IN limit2 INTEGER(11)
+    )
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+SET @keyword = keyword;
+SET @sortword = sortword;
+SET @limit1 = limit1;
+SET @limit2 = limit2;  
+  PREPARE STMT FROM "select * from auditors where auditorNo like ? or name like ? or fname like ? ORDER BY ? ASC LIMIT ?, ?";
+  EXECUTE STMT USING @keyword, @keyword, @keyword, @sortword, @limit1, @limit2;
+END;
+
+#
+# Definition for the `GetAuditorTotalRows` procedure : 
+#
+
+CREATE DEFINER = 'root'@'localhost' PROCEDURE `GetAuditorTotalRows`(
+        IN keyword VARCHAR(50)
+    )
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+SET @keyword = keyword;
+
+  PREPARE STMT FROM "select count( * ) as totalItems from auditors where auditorNo like ? or name like ? or fname like ?";
+  EXECUTE STMT USING @keyword, @keyword, @keyword;
+END;
+
+#
+# Definition for the `GetCustomers` procedure : 
+#
+
+CREATE DEFINER = 'root'@'localhost' PROCEDURE `GetCustomers`(
+        IN keyword VARCHAR(50),
+        IN sortword VARCHAR(50),
+        IN limit1 INTEGER(11),
+        IN limit2 INTEGER(11)
+    )
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+SET @keyword = keyword;
+SET @sortword = sortword;
+SET @limit1 = limit1;
+SET @limit2 = limit2;  
+  PREPARE STMT FROM "select * from customer where clientNo like ? or clientNameEn like ? or clientNameFa like ? or name like ? or familyN like ? ORDER BY ? ASC LIMIT ?, ?";
+  EXECUTE STMT USING @keyword, @keyword, @keyword, @keyword, @keyword, @sortword, @limit1, @limit2;
+END;
+
+#
+# Definition for the `GetCustomersTotalRows` procedure : 
+#
+
+CREATE DEFINER = 'root'@'localhost' PROCEDURE `GetCustomersTotalRows`(
+        IN keyword VARCHAR(50)
+    )
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+SET @keyword = keyword;
+
+  PREPARE STMT FROM "SELECT count( * ) as totalItems from customer where clientNo like ? or clientNameEn like ? or clientNameFa like ? or name like ? or familyN like ?";
+  EXECUTE STMT USING @keyword, @keyword, @keyword, @keyword, @keyword;
+END;
+
+#
+# Definition for the `GetUserRoles` procedure : 
+#
+
+CREATE DEFINER = 'root'@'localhost' PROCEDURE `GetUserRoles`(
+        IN userN VARCHAR(30)
+    )
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+SET @userN = userN; 
+  PREPARE STMT FROM "select * from user_role where username = ?";
+  EXECUTE STMT USING @userN;
+END;
+
+#
+# Definition for the `GetUsers` procedure : 
+#
+
+CREATE DEFINER = 'root'@'localhost' PROCEDURE `GetUsers`(
+        IN keyword VARCHAR(50),
+        IN sortword VARCHAR(50),
+        IN limit1 INTEGER(11),
+        IN limit2 INTEGER(11)
+    )
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+SET @keyword = keyword;
+SET @sortword = sortword;
+SET @limit1 = limit1;
+SET @limit2 = limit2;  
+  PREPARE STMT FROM "select * from Users where username like ? or name like ? or fname like ? or tel like ? ORDER BY ? ASC LIMIT ?, ?";
+  EXECUTE STMT USING @keyword, @keyword, @keyword, @keyword, @sortword, @limit1, @limit2;
+END;
+
+#
+# Definition for the `GetUserTotalRows` procedure : 
+#
+
+CREATE DEFINER = 'root'@'localhost' PROCEDURE `GetUserTotalRows`(
+        IN keyword VARCHAR(50)
+    )
+    NOT DETERMINISTIC
+    CONTAINS SQL
+    SQL SECURITY DEFINER
+    COMMENT ''
+BEGIN
+SET @keyword = keyword;
+
+  PREPARE STMT FROM "SELECT count( * ) as totalItems from users where username like ? or name like ? or fname like ? or tel like ?";
+  EXECUTE STMT USING @keyword, @keyword, @keyword, @keyword;
+END;
+
+#
+# Data for the `auditors` table  (LIMIT 0,500)
+#
+
+INSERT INTO `auditors` (`auditorNo`, `name`, `fname`, `language`, `eMail`, `tel`, `address`, `gender`, `birth`) VALUES 
+  ('01','nameeee','fnameee','languageeeee',NULL,'telllllllllll','address1','0','31/04/1364'),
+  ('02','nameeee','fnameee','languageeeee','email','telllllllllll','address1','1','31/04/1364');
+COMMIT;
+
+#
+# Data for the `customer` table  (LIMIT 0,500)
+#
+
+INSERT INTO `customer` (`clientNo`, `clientNameEn`, `clientNameFa`, `siteStatus`, `name`, `familyN`, `position`, `mobile`, `issueDate`, `revisedDate`, `addContact`, `webSite`, `eMail`) VALUES 
+  ('amirsa','asdfasdf','1111',1,'dfgndhfgb','dfgbdf','dfgndhfgv','dfndfb',NULL,NULL,NULL,NULL,'dfghjdghjdgh'),
+  ('clii','clientNameEn222','تدل توودذود',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'addContact222',NULL,NULL),
+  ('clii0','clientNameEn222','تدل توودذود',3,'name','familynameee','position','mobile',NULL,NULL,'addContact222',NULL,'mailll'),
+  ('cliiiii','clientNameEn222','clientNameFa222',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'addContact222',NULL,NULL),
+  ('cliiiiickjhnkm','compan','ØªÙ†ØªØ§Ù†',1,'name','fname','posi','mob',NULL,NULL,'addicont','www.ssss','behrooz.24816@yahoo.com'),
+  ('cliiiiicvhb54','compannamde','11111',1,'Amirsaleh','fnammemememe','positttttttttttion','moooooooob',NULL,NULL,NULL,NULL,'@@@@'),
+  ('cvhbdfgjknksjh','compan','ØªÙ†ØªØ§Ù†',1,'name','fname','posi','mob',NULL,NULL,'addicont','www.ssss','behrooz24816@gmail.com');
+COMMIT;
+
+#
+# Data for the `site` table  (LIMIT 0,500)
+#
+
+INSERT INTO `site` (`id`, `clientNo`, `scopeEn`, `scopeFa`, `addrEn`, `addrFa`, `employeeNo`) VALUES 
+  (37,'cliiiii','scopeEn0','scopeFa220','addressEn0','addressFa0',0),
+  (38,'cliiiii','scopeEn1','scopeFa221','addressEn1','addressFa1',1),
+  (39,'cliiiii','scopeEn2','scopeFa222','addressEn2','addressFa2',2),
+  (40,'cliiiii','scopeEn3','scopeFa223','addressEn3','addressFa3',3),
+  (41,'cliiiii','scopeEn4','scopeFa224','addressEn4','addressFa4',4),
+  (42,'clii','scopeEn0','scopeFa220','addressEn0','addressFa0',0),
+  (43,'clii','scopeEn1','scopeFa221','addressEn1','addressFa1',1),
+  (44,'clii','scopeEn2','scopeFa222','addressEn2','addressFa2',2),
+  (45,'clii','scopeEn3','scopeFa223','addressEn3','addressFa3',3),
+  (46,'clii','scopeEn4','scopeFa224','addressEn4','addressFa4',4),
+  (47,'clii0','scopeEn0','scopeFa220','addressEn0','addressFa0',0),
+  (48,'clii0','scopeEn1','scopeFa221','addressEn1','addressFa1',1),
+  (49,'clii0','scopeEn2','scopeFa222','addressEn2','addressFa2',2),
+  (50,'clii0','scopeEn3','scopeFa223','addressEn3','addressFa3',3),
+  (51,'clii0','scopeEn4','scopeFa224','addressEn4','addressFa4',4),
+  (52,'cliiiiickjhnkm','scopen','ÛØ´Ø³ÛØ´Ø³Û','addrsssen','Ø³ÛØ²Ø³Ø²Ø³Ø²Ø³ÛØ² Ø¦Ø³ÛÙÙØ¯',77),
+  (53,'cvhbdfgjknksjh','scopen','ÛØ´Ø³ÛØ´Ø³Û','addrsssen','Ø³ÛØ²Ø³Ø²Ø³Ø²Ø³ÛØ² Ø¦Ø³ÛÙÙØ¯',77),
+  (54,'cliiiiicvhb54','scopen','ÛØ´Ø³ÛØ´Ø³Û','addrsssen','Ø³ÛØ²Ø³Ø²Ø³Ø²Ø³ÛØ² Ø¦Ø³ÛÙÙØ¯',77),
+  (55,'cliiiiicvhb54','scopensssss','ÛØ´Ø³ÛØ´Ø³Û','addrsssen','Ø³ÛØ²Ø³Ø²Ø³Ø²Ø³ÛØ² Ø¦Ø³ÛÙÙØ¯',56478),
+  (56,'cliiiiicvhb54','scopen','ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ´ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ´ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂ','addrsssen','ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ²ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂ²ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂ²ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ² ÃÂÃÂÃÂÃÂ¦ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¯',77),
+  (57,'cliiiiicvhb54','scopen11111111','ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ´ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ´ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂ','addrsssen','ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ²ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂ²ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂ²ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ² ÃÂÃÂÃÂÃÂ¦ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¯',56478),
+  (58,'amirsa','asdfasfd','sadfasdf','xvzczcxv','szcvazvd',33),
+  (59,'amirsa','sdfgsfdg','fdgbdhfgbd','dfgbdhfgbd','fvhnvbndb',76),
+  (60,'amirsa','asdfasfd','sadfasdf','xvzczcxv','szcvazvd',33),
+  (61,'amirsa','sdfgsfdg','fdgbdhfgbd','dfgbdhfgbd','fvhnvbndb',76);
+COMMIT;
+
+#
+# Data for the `users` table  (LIMIT 0,500)
+#
+
+INSERT INTO `users` (`username`, `date`, `name`, `fname`, `address`, `nationalID`, `email`, `tel`, `dob`, `password`) VALUES 
+  ('userName01','31/4/64','name','familyName','address','nationalID','emailAddress','tel','doooob','1a1dc91c907325c69271ddf0c944bc72'),
+  ('userName02','31/4/64','name','familyName','address','nationalID','emailAddress','tel','doooob','1a1dc91c907325c69271ddf0c944bc72');
+COMMIT;
+
+
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+"http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+	<definition name="baseLayout" path="/pages/siteLayout.jsp">
+		<put name="menu" value="/pages/menu.jsp" />
+	</definition>
+	
+	<definition name="page.customer" extends="baseLayout">
+		<put name="title" value="Customer Page" />
+		<put name="body" value="/customer.do" />
+	</definition>
+	
+	<definition name="page.auditor" extends="baseLayout">
+		<put name="title" value="Auditor Page" />
+		<put name="body" value="/auditor.do" />
+	</definition>
+	
+	<definition name="page.user" extends="baseLayout">
+		<put name="title" value="User Page" />
+		<put name="body" value="/user.do" />
+	</definition>
+	
+</tiles-definitions>

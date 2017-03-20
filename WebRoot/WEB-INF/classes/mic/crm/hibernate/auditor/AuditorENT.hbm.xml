@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="mic.crm.common.auditor.AuditorENT" table="auditors" catalog="micrm">
+        <id name="auditorNo" type="java.lang.String">
+            <column name="auditorNo" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" length="20" />
+        </property>
+        <property name="fname" type="java.lang.String">
+            <column name="fname" length="20" />
+        </property>
+        <property name="language" type="java.lang.String">
+            <column name="language" length="20" />
+        </property>
+        <property name="eMail" type="java.lang.String">
+            <column name="eMail" length="20" />
+        </property>
+        <property name="tel" type="java.lang.String">
+            <column name="tel" length="20" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="address" length="20" />
+        </property>
+        <property name="gender" type="java.lang.Boolean">
+            <column name="gender" />
+        </property>
+        <property name="birth" type="java.lang.String">
+            <column name="birth" length="20" />
+        </property>
+    </class>
+    <sql-query name="spGetAuditTotalItems" callable="true">
+		{call GetAuditorTotalRows(?)}
+    </sql-query>
+	<sql-query name="spGetAuditorList" callable="true">
+		<return class="mic.crm.common.auditor.AuditorENT" lock-mode="read"></return>
+		{call GetAuditors(?,?,?,?)}
+	</sql-query>
+	<sql-query name="sqlGetAuditorENT" callable="true">
+		<return class="mic.crm.common.auditor.AuditorENT" lock-mode="read"></return>
+		select * from auditors where auditorNo = ?
+	</sql-query>
+</hibernate-mapping>

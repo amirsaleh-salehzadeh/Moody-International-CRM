@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="mic.crm.common.customer.CustomerENT" table="customer">
+		<id name="clientNo" type="java.lang.String">
+			<column name="clientNo" />
+			<generator class="assigned" />
+		</id>
+		<property name="clientNameEn" type="java.lang.String">
+			<column name="clientNameEn" />
+		</property>
+		<property name="clientNameFa" type="java.lang.String">
+			<column name="clientNameFa" />
+		</property>
+		<property name="siteStatus" type="java.lang.Integer">
+			<column name="siteStatus" />
+		</property>
+		<property name="name" type="java.lang.String">
+			<column name="name" />
+		</property>
+		<property name="familyN" type="java.lang.String">
+			<column name="familyN" />
+		</property>
+		<property name="position" type="java.lang.String">
+			<column name="position" />
+		</property>
+		<property name="mobile" type="java.lang.String">
+			<column name="mobile" />
+		</property>
+		<property name="issueDate" type="java.sql.Date">
+			<column name="issueDate" />
+		</property>
+		<property name="addContact" type="java.lang.String">
+			<column name="addContact" />
+		</property>
+		<property name="webSite" type="java.lang.String">
+			<column name="webSite" />
+		</property>
+		<property name="eMail" type="java.lang.String">
+			<column name="eMail" />
+		</property>
+	</class>
+	<sql-query name="spGetCustomersTotalItems" callable="true">
+		{call GetCustomersTotalRows(?)}
+    </sql-query>
+	<sql-query name="spGetCustomersList" callable="true">
+		<return class="mic.crm.common.customer.CustomerENT" lock-mode="read"></return>
+		{call GetCustomers(?,?,?,?)}
+	</sql-query>
+	<sql-query name="sqlGetCustomerENT" callable="true">
+		<return class="mic.crm.common.customer.CustomerENT" lock-mode="read"></return>
+		select * from customer where clientNo = ?
+	</sql-query>
+</hibernate-mapping>

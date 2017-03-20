@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="mic.crm.common.user.UserENT" table="users">
+		<id name="userName" type="java.lang.String">
+            <column name="username" />
+            <generator class="assigned" />
+        </id>
+		<property name="dob" type="java.lang.String">
+            <column name="dob"/>
+        </property>
+		<property name="name" type="java.lang.String">
+            <column name="name"/>
+        </property>
+        <property name="date" type="java.lang.String">
+            <column name="date"/>
+        </property>
+		<property name="familyName" type="java.lang.String">
+            <column name="fName"/>
+        </property>
+        <property name="nationalID" type="java.lang.String">
+            <column name="nationalID"/>
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="address"/>
+        </property>
+        <property name="emailAddress" type="java.lang.String">
+            <column name="email"/>
+        </property>
+        <property name="tel" type="java.lang.String">
+            <column name="tel"/>
+        </property>
+	</class>
+	<sql-query name="sqlGetUsersCount">
+		SELECT count( * ) as totalItems FROM users
+	</sql-query>
+	<sql-query name="spGetUsersList" callable="true">
+		<return class="mic.crm.common.user.UserENT" lock-mode="read"></return>
+		{call GetUsers(?,?,?,?)}
+	</sql-query>
+	<sql-query name="sqlGetUserENT" callable="true">
+		<return class="mic.crm.common.user.UserENT" lock-mode="read"></return>
+		select * from users where username = ?
+	</sql-query>
+</hibernate-mapping>
